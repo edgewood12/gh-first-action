@@ -1,4 +1,4 @@
-name: Test add2 Script
+name: Test add2 Script using external script
 
 on: workflow_dispatch
 jobs:
