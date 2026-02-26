@@ -1,0 +1,38 @@
+name: Test Sum Script
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-bash:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Make script executable
+        run: chmod +x sum.sh
+
+      - name: Test valid addition (10 + 5)
+        run: |
+          result=$(./sum.sh 10 5)
+          echo "Output: $result"
+          if [[ "$result" == *"15"* ]]; then
+            echo "Success: 10 + 5 = 15"
+          else
+            echo "Failed: Expected 15"
+            exit 1
+          fi
+
+      - name: Test error handling (missing arguments)
+        run: |
+          if ./sum.sh 10; then
+            echo "Failed: Script should have exited with error code"
+            exit 1
+          else
+            echo "Success: Script handled missing argument correctly"
+          fi
