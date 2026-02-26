@@ -1,0 +1,16 @@
+name: Test add2 Script
+
+on: workflow_dispatch
+jobs:
+  test-bash:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set permissions
+        run: chmod +x add2.sh test_add2.sh
+
+      - name: Run external test suite
+        run: ./test_add2.sh
