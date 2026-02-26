@@ -1,11 +1,6 @@
 name: Test add2 Script
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+on: workflow_dispatch
 jobs:
   test-bash:
     runs-on: ubuntu-latest
